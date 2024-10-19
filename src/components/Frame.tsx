@@ -67,6 +67,7 @@ export default function Frame({name, children}: {
                         onClick={handleAuth}
                         disabled={status === 'loading'}
                         color="inherit"
+                        edge="end"
                     >
                         {status === 'loading' ?
                             <CircularProgress/> :
