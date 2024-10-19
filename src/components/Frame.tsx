@@ -69,7 +69,11 @@ export default function Frame({name, children}: {
                             color="inherit"
                         >
                             {data ?
-                                <Avatar alt={data.user?.name ?? undefined} src={data.user?.image ?? undefined}/> :
+                                <Avatar
+                                    alt={data.user?.name ?? undefined}
+                                    src={data.user?.image ?? undefined}
+                                    sx={{width: 24, height: 24}}
+                                /> :
                                 <AccountCircle/>}
                         </IconButton>}
                     {data &&
