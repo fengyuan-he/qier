@@ -23,18 +23,33 @@ importers:
       '@mui/material':
         specifier: ^6.1.4
         version: 6.1.4(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@prisma/client':
+        specifier: 5.21.1
+        version: 5.21.1(prisma@5.21.1)
       next:
         specifier: 14.2.15
         version: 14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-auth:
         specifier: ^4.24.8
         version: 4.24.8(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      prisma:
+        specifier: ^5.21.1
+        version: 5.21.1
       react:
         specifier: ^18
         version: 18.3.1
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
+      swr:
+        specifier: ^2.2.5
+        version: 2.2.5(react@18.3.1)
+      verror:
+        specifier: ^1.10.1
+        version: 1.10.1
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -45,6 +60,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.1
+      '@types/verror':
+        specifier: ^1.10.10
+        version: 1.10.10
       eslint:
         specifier: ^8
         version: 8.57.1
@@ -393,6 +411,30 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@prisma/client@5.21.1':
+    resolution: {integrity: sha512-3n+GgbAZYjaS/k0M03yQsQfR1APbr411r74foknnsGpmhNKBG49VuUkxIU6jORgvJPChoD4WC4PqoHImN1FP0w==}
+    engines: {node: '>=16.13'}
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+
+  '@prisma/debug@5.21.1':
+    resolution: {integrity: sha512-uY8SAhcnORhvgtOrNdvWS98Aq/nkQ9QDUxrWAgW8XrCZaI3j2X7zb7Xe6GQSh6xSesKffFbFlkw0c2luHQviZA==}
+
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36':
+    resolution: {integrity: sha512-qvnEflL0//lh44S/T9NcvTMxfyowNeUxTunPcDfKPjyJNrCNf2F1zQLcUv5UHAruECpX+zz21CzsC7V2xAeM7Q==}
+
+  '@prisma/engines@5.21.1':
+    resolution: {integrity: sha512-hGVTldUkIkTwoV8//hmnAAiAchi4oMEKD3aW5H2RrnI50tTdwza7VQbTTAyN3OIHWlK5DVg6xV7X8N/9dtOydA==}
+
+  '@prisma/fetch-engine@5.21.1':
+    resolution: {integrity: sha512-70S31vgpCGcp9J+mh/wHtLCkVezLUqe/fGWk3J3JWZIN7prdYSlr1C0niaWUyNK2VflLXYi8kMjAmSxUVq6WGQ==}
+
+  '@prisma/get-platform@5.21.1':
+    resolution: {integrity: sha512-sRxjL3Igst3ct+e8ya/x//cDXmpLbZQ5vfps2N4tWl4VGKQAmym77C/IG/psSMsQKszc8uFC/q1dgmKFLUgXZQ==}
+
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
@@ -425,6 +467,9 @@ packages:
 
   '@types/react@18.3.11':
     resolution: {integrity: sha512-r6QZ069rFTjrEYgFdOck1gK7FLVsgJE7tTz0pQBczlBNUhBNk0MQH4UbnFSwjpQLMkLzgqvBBa+qGpLje16eTQ==}
+
+  '@types/verror@1.10.10':
+    resolution: {integrity: sha512-l4MM0Jppn18hb9xmM6wwD1uTdShpf9Pn80aXTStnK1C94gtPvJcV2FrDmbOQUAQfJ1cKZHktkQUDwEqaAKXMMg==}
 
   '@typescript-eslint/eslint-plugin@8.10.0':
     resolution: {integrity: sha512-phuB3hoP7FFKbRXxjl+DRlQDuJqhpOnm5MmtROXyWi3uS/Xg2ZXqiQfcG2BJHiN4QKyzdOJi3NEn/qTnjUlkmQ==}
@@ -557,6 +602,10 @@ packages:
     resolution: {integrity: sha512-bMxMKAjg13EBSVscxTaYA4mRc5t1UAXa2kXiGTNfZ079HIWXEkKmkgFrh/nJqamaLSrXO5H4WFFkPEaLJWbs3A==}
     engines: {node: '>= 0.4'}
 
+  assert-plus@1.0.0:
+    resolution: {integrity: sha512-NfJ4UzBCcQGLDlQq7nHxH+tv3kyZ0hHQqF5BO6J7tNJeP5do1llPr8dZ8zHonfhAu0PHAdMkSo+8o0wxg9lZWw==}
+    engines: {node: '>=0.8'}
+
   ast-types-flow@0.0.8:
     resolution: {integrity: sha512-OH/2E5Fg20h2aPrbe+QL8JZQFko0YZaF+j4mnQ7BGhfavO7OpSLa8a0y9sBwomHdSbkhTS8TQNayBfnW5DwbvQ==}
 
@@ -641,6 +690,9 @@ packages:
   cookie@0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
+
+  core-util-is@1.0.2:
+    resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
 
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
@@ -877,6 +929,10 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
+  extsprintf@1.4.1:
+    resolution: {integrity: sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA==}
+    engines: {'0': node >=0.6.0}
+
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
 
@@ -924,6 +980,11 @@ packages:
 
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
+
+  fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
@@ -1430,6 +1491,11 @@ packages:
   pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
 
+  prisma@5.21.1:
+    resolution: {integrity: sha512-PB+Iqzld/uQBPaaw2UVIk84kb0ITsLajzsxzsadxxl54eaU5Gyl2/L02ysivHxK89t7YrfQJm+Ggk37uvM70oQ==}
+    engines: {node: '>=16.13'}
+    hasBin: true
+
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
@@ -1633,6 +1699,11 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  swr@2.2.5:
+    resolution: {integrity: sha512-QtxqyclFeAsxEUeZIYmsaQ0UjimSq1RZ9Un7I68/0ClKK/U3LoyQunwkQfJZr2fc22DfIXLNDc2wFyTEikCUpg==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
@@ -1698,9 +1769,18 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
+  use-sync-external-store@1.2.2:
+    resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+
+  verror@1.10.1:
+    resolution: {integrity: sha512-veufcmxri4e3XSrT0xwfUR7kguIkaxBeosDg00yDWhk49wdwkSUrvvsm7nc75e1PUyvIeZj6nS8VQRYz2/S4Xg==}
+    engines: {node: '>=0.6.0'}
 
   which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
@@ -1747,6 +1827,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -2097,6 +2180,31 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@prisma/client@5.21.1(prisma@5.21.1)':
+    optionalDependencies:
+      prisma: 5.21.1
+
+  '@prisma/debug@5.21.1': {}
+
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36': {}
+
+  '@prisma/engines@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/fetch-engine': 5.21.1
+      '@prisma/get-platform': 5.21.1
+
+  '@prisma/fetch-engine@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/get-platform': 5.21.1
+
+  '@prisma/get-platform@5.21.1':
+    dependencies:
+      '@prisma/debug': 5.21.1
+
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.10.4': {}
@@ -2130,6 +2238,8 @@ snapshots:
     dependencies:
       '@types/prop-types': 15.7.13
       csstype: 3.1.3
+
+  '@types/verror@1.10.10': {}
 
   '@typescript-eslint/eslint-plugin@8.10.0(@typescript-eslint/parser@8.10.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)(typescript@5.6.3)':
     dependencies:
@@ -2312,6 +2422,8 @@ snapshots:
       is-array-buffer: 3.0.4
       is-shared-array-buffer: 1.0.3
 
+  assert-plus@1.0.0: {}
+
   ast-types-flow@0.0.8: {}
 
   available-typed-arrays@1.0.7:
@@ -2391,6 +2503,8 @@ snapshots:
   convert-source-map@1.9.0: {}
 
   cookie@0.5.0: {}
+
+  core-util-is@1.0.2: {}
 
   cosmiconfig@7.1.0:
     dependencies:
@@ -2808,6 +2922,8 @@ snapshots:
 
   esutils@2.0.3: {}
 
+  extsprintf@1.4.1: {}
+
   fast-deep-equal@3.1.3: {}
 
   fast-glob@3.3.2:
@@ -2859,6 +2975,9 @@ snapshots:
       signal-exit: 4.1.0
 
   fs.realpath@1.0.0: {}
+
+  fsevents@2.3.3:
+    optional: true
 
   function-bind@1.1.2: {}
 
@@ -3357,6 +3476,12 @@ snapshots:
 
   pretty-format@3.8.0: {}
 
+  prisma@5.21.1:
+    dependencies:
+      '@prisma/engines': 5.21.1
+    optionalDependencies:
+      fsevents: 2.3.3
+
   prop-types@15.8.1:
     dependencies:
       loose-envify: 1.4.0
@@ -3583,6 +3708,12 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  swr@2.2.5(react@18.3.1):
+    dependencies:
+      client-only: 0.0.1
+      react: 18.3.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
+
   tapable@2.2.1: {}
 
   text-table@0.2.0: {}
@@ -3659,7 +3790,17 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
+  use-sync-external-store@1.2.2(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
   uuid@8.3.2: {}
+
+  verror@1.10.1:
+    dependencies:
+      assert-plus: 1.0.0
+      core-util-is: 1.0.2
+      extsprintf: 1.4.1
 
   which-boxed-primitive@1.0.2:
     dependencies:
@@ -3724,3 +3865,5 @@ snapshots:
   yaml@1.10.2: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.23.8: {}

@@ -11,6 +11,7 @@ import {
     DialogContent,
     DialogTitle,
     IconButton,
+    Paper,
     ThemeProvider,
     Toolbar,
     Typography,
@@ -21,12 +22,18 @@ import {title} from "@/values";
 import {AccountCircle, Close, Home} from "@mui/icons-material";
 import {signIn, signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
+import Swr from "@/components/Swr";
+import {z} from "zod";
 
 const theme = createTheme({
     colorSchemes: {
         dark: true
     }
 })
+
+const schema = z.object({
+    master: z.boolean()
+}).strict()
 
 export default function Frame({name, children}: {
     name?: string
@@ -94,7 +101,12 @@ export default function Frame({name, children}: {
                                 <Close/>
                             </IconButton>
                             <DialogContent>
-
+                                <Swr url="/api/auth" value={schema}>
+                                    {({master}) =>
+                                        <Paper elevation={master ? 3 : 0}>
+                                            123
+                                        </Paper>}
+                                </Swr>
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={() => signOut()}>
