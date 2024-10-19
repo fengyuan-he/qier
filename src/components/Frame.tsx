@@ -50,31 +50,30 @@ export default function Frame({name, children}: {
             <AppBar elevation={trigger ? 4 : 0}>
                 <Toolbar>
                     {name !== undefined &&
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        sx={{mr: 2}}
-                        onClick={() => push('/')}
-                    >
-                        <Home/>
-                    </IconButton>}
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            sx={{mr: 2}}
+                            onClick={() => push('/')}
+                        >
+                            <Home/>
+                        </IconButton>}
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         {name ?? home}
                     </Typography>
-                    <IconButton
-                        size="large"
-                        onClick={handleAuth}
-                        disabled={status === 'loading'}
-                        color="inherit"
-                        edge="end"
-                    >
-                        {status === 'loading' ?
-                            <CircularProgress/> :
-                            data ?
+                    {status === 'loading' ?
+                        <CircularProgress color="inherit"/> :
+                        <IconButton
+                            size="large"
+                            onClick={handleAuth}
+                            color="inherit"
+                            edge="end"
+                        >
+                            {data ?
                                 <Avatar alt={data.user?.name ?? undefined} src={data.user?.image ?? undefined}/> :
                                 <AccountCircle/>}
-                    </IconButton>
+                        </IconButton>}
                     {data &&
                         <Dialog open={open} onClose={handleClose}>
                             <DialogTitle sx={{m: 0, p: 2}}>
