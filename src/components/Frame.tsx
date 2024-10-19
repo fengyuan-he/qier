@@ -52,7 +52,6 @@ export default function Frame({name, children}: {
                     {name !== undefined &&
                         <IconButton
                             size="large"
-                            edge="start"
                             color="inherit"
                             sx={{mr: 2}}
                             onClick={() => push('/')}
@@ -68,7 +67,6 @@ export default function Frame({name, children}: {
                             size="large"
                             onClick={handleAuth}
                             color="inherit"
-                            edge="end"
                         >
                             {data ?
                                 <Avatar alt={data.user?.name ?? undefined} src={data.user?.image ?? undefined}/> :
