@@ -28,7 +28,7 @@ const theme = createTheme({
     }
 })
 
-export default function ({name, children}: {
+export default function Frame({name, children}: {
     name?: string
     children?: ReactNode
 }) {
