@@ -3,35 +3,60 @@ import Frame from "@/components/Frame";
 import {List, ListItemButton, ListItemText} from "@mui/material";
 import {useRouter} from "next/navigation";
 
-export default function Page() {
+interface ItemProps {
+    name: string
+    url: string
+}
+
+function Item({name, url}: ItemProps) {
     const {push} = useRouter()
+    return (
+        <ListItemButton onClick={() => push(`./${url}`)}>
+            <ListItemText>{name}</ListItemText>
+        </ListItemButton>
+    )
+}
+
+const array: ItemProps[] = [
+    {
+        name: '理论研究和政策指导',
+        url: 'zhengce'
+    },
+    {
+        name: '九大分区入口',
+        url: 'jiuda'
+    },
+    {
+        name: '专技预约与反馈',
+        url: 'zhuanji'
+    },
+    {
+        name: '特色课程指导',
+        url: 'zhidao'
+    },
+    {
+        name: '经验分享区',
+        url: 'jingyan'
+    },
+    {
+        name: '家长课堂',
+        url: 'jiazhang'
+    },
+    {
+        name: '问答区',
+        url: 'wenda'
+    },
+    {
+        name: '家庭互助讨论组',
+        url: 'huzhu'
+    }
+]
+
+export default function Page() {
     return (
         <Frame>
             <List>
-                <ListItemButton onClick={() => push('./wenda')} disabled>
-                    <ListItemText>问答区</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./jiuda')}>
-                    <ListItemText>九大分区入口</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./huzhu')} disabled>
-                    <ListItemText>家庭互助讨论组</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./zhengce')} disabled>
-                    <ListItemText>理论研究和政策指导</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./jingyan')} disabled>
-                    <ListItemText>经验分享区</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./zhuanji')} disabled>
-                    <ListItemText>专技预约与反馈</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./zhidao')} disabled>
-                    <ListItemText>特色课程指导</ListItemText>
-                </ListItemButton>
-                <ListItemButton onClick={() => push('./jiazhang')} disabled>
-                    <ListItemText>家长课堂</ListItemText>
-                </ListItemButton>
+                {array.map((value, index) => <Item {...value} key={index}/>)}
             </List>
         </Frame>
     )

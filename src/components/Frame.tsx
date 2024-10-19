@@ -17,7 +17,7 @@ import {
     useScrollTrigger
 } from "@mui/material";
 import {ReactNode, useState} from "react";
-import {home, title} from "@/values";
+import {title} from "@/values";
 import {AccountCircle, Close, Home} from "@mui/icons-material";
 import {signIn, signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
@@ -59,7 +59,7 @@ export default function Frame({name, children}: {
                             <Home/>
                         </IconButton>}
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                        {name ?? home}
+                        {name ?? '首页'}
                     </Typography>
                     {status === 'loading' ?
                         <CircularProgress color="inherit"/> :

@@ -26,7 +26,7 @@ const array: ItemProps[] = [
         name: '智力障碍'
     },
     {
-        name: '自闭症'
+        name: '孤独症'
     },
     {
         name: '情绪行为'
@@ -38,7 +38,7 @@ const array: ItemProps[] = [
         name: '语言障碍',
     },
     {
-        name: '肢体残疾',
+        name: '肢体障碍',
     },
     {
         name: '多重障碍'
