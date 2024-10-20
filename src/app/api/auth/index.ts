@@ -7,9 +7,9 @@ export default async function auth() {
     if (!session) return null
     const {user} = session
     if (!user) return null
-    const {name} = user
-    if (!name) return null
-    return prisma.user.upsert({
+    const {name, image} = user
+    if (!name || !image) return null
+    const {master} = await prisma.user.upsert({
         where: {
             name
         },
@@ -22,4 +22,5 @@ export default async function auth() {
             master: true
         }
     })
+    return {name, image, master}
 }

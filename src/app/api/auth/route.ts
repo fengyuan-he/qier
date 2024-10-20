@@ -1,4 +1,4 @@
 import auth from "@/app/api/auth/index";
-import server from "@/app/server";
+import api from "@/app/api";
 
-export const GET = server(auth)
+export const GET = api(auth)

@@ -2,6 +2,7 @@ import {
     AppBar,
     Avatar,
     Button,
+    Chip,
     CircularProgress,
     Container,
     createTheme,
@@ -11,7 +12,6 @@ import {
     DialogContent,
     DialogTitle,
     IconButton,
-    Paper,
     ThemeProvider,
     Toolbar,
     Typography,
@@ -19,21 +19,17 @@ import {
 } from "@mui/material";
 import {ReactNode, useState} from "react";
 import {title} from "@/values";
-import {AccountCircle, Close, Home} from "@mui/icons-material";
-import {signIn, signOut, useSession} from "next-auth/react";
+import {AccountCircle, Close, Error, Home} from "@mui/icons-material";
+import {signIn, signOut} from "next-auth/react";
 import {useRouter} from "next/navigation";
-import Swr from "@/components/Swr";
-import {z} from "zod";
+import {useUser} from "@/components/UserProvider";
+import Report from "@/components/Report";
 
 const theme = createTheme({
     colorSchemes: {
         dark: true
     }
 })
-
-const schema = z.object({
-    master: z.boolean()
-}).strict()
 
 export default function Frame({name, children}: {
     name?: string
@@ -44,11 +40,8 @@ export default function Frame({name, children}: {
     const handleClose = () => {
         setOpen(false)
     }
-    const {data, status} = useSession()
-    const handleAuth = () => {
-        if (data) setOpen(true)
-        else signIn('github')
-    }
+    const {data, error, mutate, isLoading} = useUser()
+    const handleAuth = () => data || error ? setOpen(true) : signIn('github')
     const {push} = useRouter()
     return (
         <ThemeProvider theme={theme}>
@@ -68,25 +61,32 @@ export default function Frame({name, children}: {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         {name ?? '首页'}
                     </Typography>
-                    {status === 'loading' ?
+                    {isLoading ?
                         <CircularProgress color="inherit"/> :
                         <IconButton
                             size="large"
                             onClick={handleAuth}
                             color="inherit"
                         >
-                            {data ?
-                                <Avatar
-                                    alt={data.user?.name ?? undefined}
-                                    src={data.user?.image ?? undefined}
-                                    sx={{width: 24, height: 24}}
-                                /> :
-                                <AccountCircle/>}
+                            {error ?
+                                <Error/> :
+                                data ?
+                                    <Avatar
+                                        alt={data.name}
+                                        src={data.image}
+                                        sx={{width: 24, height: 24}}
+                                    /> :
+                                    <AccountCircle/>}
                         </IconButton>}
-                    {data &&
+                    {(data || error) &&
                         <Dialog open={open} onClose={handleClose}>
                             <DialogTitle sx={{m: 0, p: 2}}>
-                                {data.user?.name ?? undefined}
+                                {data ?
+                                    <>
+                                        {data.name}
+                                        {data.master && <Chip label="站长" sx={{ml: 1}} size="small"/>}
+                                    </> :
+                                    '登录失败'}
                             </DialogTitle>
                             <IconButton
                                 aria-label="close"
@@ -101,12 +101,9 @@ export default function Frame({name, children}: {
                                 <Close/>
                             </IconButton>
                             <DialogContent>
-                                <Swr url="/api/auth" value={schema}>
-                                    {({master}) =>
-                                        <Paper elevation={master ? 3 : 0}>
-                                            123
-                                        </Paper>}
-                                </Swr>
+                                {data ?
+                                    <></> :
+                                    <Report error={error} onRetry={mutate}/>}
                             </DialogContent>
                             <DialogActions>
                                 <Button onClick={() => signOut()}>

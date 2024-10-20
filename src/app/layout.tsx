@@ -5,7 +5,7 @@ import '@fontsource/roboto/700.css';
 import type {Metadata} from "next";
 import {ReactNode} from "react";
 import {description, title} from "@/values";
-import SessionWrapper from "@/components/SessionWrapper";
+import UserProvider from "@/components/UserProvider";
 
 export const metadata: Metadata = {title, description}
 
@@ -15,9 +15,9 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="zh-CN">
         <body>
-        <SessionWrapper>
+        <UserProvider>
             {children}
-        </SessionWrapper>
+        </UserProvider>
         </body>
         </html>
     );
