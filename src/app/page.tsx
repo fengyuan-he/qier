@@ -12,7 +12,7 @@ interface ItemProps {
 function Item({name, url, disabled}: ItemProps) {
     const {push} = useRouter()
     return (
-        <ListItemButton onClick={() => push(`./${url}`)} disabled={disabled}>
+        <ListItemButton onClick={() => push(`/${url}`)} disabled={disabled}>
             <ListItemText>{name}</ListItemText>
         </ListItemButton>
     )
