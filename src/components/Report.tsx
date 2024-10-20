@@ -8,12 +8,12 @@ export default function Report({error, onRetry}: {
 }) {
     useEffect(() => {
         console.error(error)
-    }, [])
+    }, [error])
     return (
         <Alert
             severity="error"
             action={
-                <IconButton color="inherit" size="small">
+                <IconButton color="inherit" size="small" onClick={onRetry}>
                     <Refresh/>
                 </IconButton>
             }

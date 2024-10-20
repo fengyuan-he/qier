@@ -1,7 +1,7 @@
 import {z, ZodTypeAny} from "zod";
 import VError from "verror";
 
-export default function (value: ZodTypeAny) {
+export default function app(value: ZodTypeAny) {
     const schema = z.object({
         value
     }).strict().or(z.object({
