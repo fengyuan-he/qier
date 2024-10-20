@@ -16,5 +16,5 @@ datasource db {
 
 model User {
   name   String  @id
-  master Boolean
+  master Boolean @default(false)
 }

@@ -15,8 +15,7 @@ export default async function auth() {
         },
         update: {},
         create: {
-            name,
-            master: false
+            name
         },
         select: {
             master: true
