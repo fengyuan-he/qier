@@ -10,8 +10,8 @@ export default function Swr<Z extends ZodTypeAny>({url, value, children}: {
     value: Z
     children: (res: z.infer<Z>) => ReactNode
 }) {
-    const {data, error, mutate} = useSWR(url, useMemo(() => app(value), [value]))
+    const {data, error, mutate, isLoading} = useSWR(url, useMemo(() => app(value), [value]))
     if (error) return <Report error={error} onRetry={mutate}/>
-    if (data === undefined) return <LinearProgress/>
+    if (isLoading) return <LinearProgress/>
     return children(data)
 }
