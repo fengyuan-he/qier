@@ -4,11 +4,11 @@ import prisma from "@/app/prisma";
 
 export default async function auth() {
     const session = await getServerSession(options)
-    if (!session) return null
+    if (!session) return
     const {user} = session
-    if (!user) return null
+    if (!user) return
     const {name, image} = user
-    if (!name || !image) return null
+    if (!name || !image) return
     const {master} = await prisma.user.upsert({
         where: {
             name
