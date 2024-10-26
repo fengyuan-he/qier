@@ -1,4 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import createMDX from "@next/mdx"
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = createMDX()({
+    experimental: {
+        mdxRs: true
+    }
+})
+
+export default nextConfig

@@ -1,47 +1,68 @@
 'use client'
 
 import Frame from "@/components/Frame";
-import {Card, CardHeader, Grid2} from "@mui/material";
+import {Card, CardContent, CardHeader, Grid2, Link, Stack} from "@mui/material";
+import {ReactNode} from "react";
+import SpLD from "@/markdown/SpLD.md";
+import ID from "@/markdown/ID.md";
+import ASD from "@/markdown/ASD.md";
+import ADHD from "@/markdown/ADHD.md";
+import PD from "@/markdown/PD.md";
+import HI from "@/markdown/HI.md";
+import VI from "@/markdown/VI.md";
+import SLI from "@/markdown/SLI.md";
+import MI from "@/markdown/MI.md";
 
 interface ItemProps {
     name: string
+    description: ReactNode
 }
 
-function Item({name}: ItemProps) {
+function Item({name, description}: ItemProps) {
     return (
-        <Card>
+        <Card id={name}>
             <CardHeader title={name}/>
+            <CardContent>{description}</CardContent>
         </Card>
     )
 }
 
 const array: ItemProps[] = [
     {
-        name: '听力障碍'
+        name: '特殊学习障碍 (SpLD)',
+        description: <SpLD/>
     },
     {
-        name: '视力障碍'
+        name: '智力障碍 (ID)',
+        description: <ID/>
     },
     {
-        name: '智力障碍'
+        name: '孤独症（自闭症）谱系障碍 (ASD)',
+        description: <ASD/>
     },
     {
-        name: '孤独症'
+        name: '注意缺陷/多动障碍 (AD/HD)',
+        description: <ADHD/>
     },
     {
-        name: '情绪行为'
+        name: '肢体伤残 (PD)',
+        description: <PD/>
     },
     {
-        name: '注意缺陷障碍',
+        name: '听力障碍 (HI)',
+        description: <HI/>
     },
     {
-        name: '语言障碍',
+        name: '视觉障碍 (VI)',
+        description: <VI/>
     },
     {
-        name: '肢体障碍',
+        name: '言语障碍 (SLI)',
+        description: <SLI/>
     },
     {
-        name: '多重障碍'
+        name: '精神病 (MI)',
+        description: <MI/>
     }
 ]
 
@@ -49,12 +70,15 @@ export default function Page() {
     return (
         <Frame name="九大分区入口">
             <Grid2 sx={{my: 2}} container spacing={{xs: 2, md: 3}} columns={{xs: 4, sm: 8, md: 12}}>
-                {array.map((value, index) => (
-                    <Grid2 key={index} size={{xs: 2, sm: 4, md: 4}}>
-                        <Item {...value}/>
+                {array.map(({name}) => (
+                    <Grid2 key={name} size={{xs: 4}}>
+                        <Link href={`#${name}`}>{name}</Link>
                     </Grid2>
                 ))}
             </Grid2>
+            <Stack spacing={2} my={3}>
+                {array.map((value) => <Item key={value.name} {...value}/>)}
+            </Stack>
         </Frame>
     )
 }

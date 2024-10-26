@@ -11,7 +11,7 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    IconButton,
+    IconButton, Slide,
     ThemeProvider,
     Toolbar,
     Typography,
@@ -40,7 +40,7 @@ export default function Frame({name, children}: {
     name?: string
     children?: ReactNode
 }) {
-    const trigger = useScrollTrigger({disableHysteresis: true, threshold: 0})
+    const trigger = useScrollTrigger()
     const [open, setOpen] = useState(false)
     const handleClose = () => {
         setOpen(false)
@@ -52,72 +52,74 @@ export default function Frame({name, children}: {
         <ThemeProvider theme={theme}>
             <title>{name === undefined ? title : `${name}|${title}`}</title>
             <CssBaseline/>
-            <AppBar elevation={trigger ? 4 : 0}>
-                <Toolbar>
-                    {name !== undefined &&
-                        <IconButton
-                            size="large"
-                            color="inherit"
-                            sx={{mr: 2}}
-                            onClick={() => push('/')}
-                        >
-                            <Home/>
-                        </IconButton>}
-                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                        {name ?? '首页'}
-                    </Typography>
-                    {isLoading ?
-                        <CircularProgress color="inherit"/> :
-                        <IconButton
-                            size="large"
-                            onClick={handleAuth}
-                            color="inherit"
-                        >
-                            {error ?
-                                <Error/> :
-                                data ?
-                                    <Avatar
-                                        alt={data.name}
-                                        src={data.image}
-                                        sx={{width: 24, height: 24}}
-                                    /> :
-                                    <AccountCircle/>}
-                        </IconButton>}
-                    {(data || error) &&
-                        <Dialog open={open} onClose={handleClose}>
-                            <DialogTitle sx={{m: 0, p: 2}}>
-                                {data ?
-                                    <>
-                                        {data.name}
-                                        {data.master && <Chip label="站长" sx={{ml: 1}} size="small"/>}
-                                    </> :
-                                    '登录失败'}
-                            </DialogTitle>
+            <Slide appear={false} direction="down" in={!trigger}>
+                <AppBar>
+                    <Toolbar>
+                        {name !== undefined &&
                             <IconButton
-                                aria-label="close"
-                                onClick={handleClose}
-                                sx={(theme) => ({
-                                    position: 'absolute',
-                                    right: 8,
-                                    top: 8,
-                                    color: theme.palette.grey[500],
-                                })}
+                                size="large"
+                                color="inherit"
+                                sx={{mr: 2}}
+                                onClick={() => push('/')}
                             >
-                                <Close/>
-                            </IconButton>
-                            <DialogContent>
-                                {data ?
-                                    <></> :
-                                    <Report error={error} onRetry={mutate}/>}
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={() => signOut()}>
-                                    登出
-                                </Button>
-                            </DialogActions>
-                        </Dialog>}
-                </Toolbar>
-            </AppBar>
+                                <Home/>
+                            </IconButton>}
+                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                            {name ?? '首页'}
+                        </Typography>
+                        {isLoading ?
+                            <CircularProgress color="inherit"/> :
+                            <IconButton
+                                size="large"
+                                onClick={handleAuth}
+                                color="inherit"
+                            >
+                                {error ?
+                                    <Error/> :
+                                    data ?
+                                        <Avatar
+                                            alt={data.name}
+                                            src={data.image}
+                                            sx={{width: 24, height: 24}}
+                                        /> :
+                                        <AccountCircle/>}
+                            </IconButton>}
+                        {(data || error) &&
+                            <Dialog open={open} onClose={handleClose}>
+                                <DialogTitle sx={{m: 0, p: 2}}>
+                                    {data ?
+                                        <>
+                                            {data.name}
+                                            {data.master && <Chip label="站长" sx={{ml: 1}} size="small"/>}
+                                        </> :
+                                        '登录失败'}
+                                </DialogTitle>
+                                <IconButton
+                                    aria-label="close"
+                                    onClick={handleClose}
+                                    sx={(theme) => ({
+                                        position: 'absolute',
+                                        right: 8,
+                                        top: 8,
+                                        color: theme.palette.grey[500],
+                                    })}
+                                >
+                                    <Close/>
+                                </IconButton>
+                                <DialogContent>
+                                    {data ?
+                                        <></> :
+                                        <Report error={error} onRetry={mutate}/>}
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={() => signOut()}>
+                                        登出
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>}
+                    </Toolbar>
+                </AppBar>
+            </Slide>
             <Toolbar/>
             <Container>
                 {children}
