@@ -3,15 +3,15 @@
 import Frame from "@/components/Frame";
 import {Card, CardContent, CardHeader, Grid2, Link, Stack} from "@mui/material";
 import {ReactNode} from "react";
-import SpLD from "@/markdown/SpLD.md";
-import ID from "@/markdown/ID.md";
-import ASD from "@/markdown/ASD.md";
-import ADHD from "@/markdown/ADHD.md";
-import PD from "@/markdown/PD.md";
-import HI from "@/markdown/HI.md";
-import VI from "@/markdown/VI.md";
-import SLI from "@/markdown/SLI.md";
-import MI from "@/markdown/MI.md";
+import SpLD from "@/markdown/SpLD.mdx";
+import ID from "@/markdown/ID.mdx";
+import ASD from "@/markdown/ASD.mdx";
+import ADHD from "@/markdown/ADHD.mdx";
+import PD from "@/markdown/PD.mdx";
+import HI from "@/markdown/HI.mdx";
+import VI from "@/markdown/VI.mdx";
+import SLI from "@/markdown/SLI.mdx";
+import MI from "@/markdown/MI.mdx";
 
 interface ItemProps {
     name: string
