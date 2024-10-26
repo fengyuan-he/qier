@@ -24,8 +24,13 @@ import {signIn, signOut} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/components/UserProvider";
 import Report from "@/components/Report";
+import {blue, lightGreen} from "@mui/material/colors";
 
 const theme = createTheme({
+    palette: {
+        primary: blue,
+        secondary: lightGreen,
+    },
     colorSchemes: {
         dark: true
     }
