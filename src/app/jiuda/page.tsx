@@ -1,7 +1,7 @@
 'use client'
 
 import Frame from "@/components/Frame";
-import {Card, CardContent, CardHeader, Grid2, Link, Stack} from "@mui/material";
+import {Button, Card, CardContent, CardHeader, Grid2, Stack} from "@mui/material";
 import {ReactNode} from "react";
 import SpLD from "@/markdown/SpLD.mdx";
 import ID from "@/markdown/ID.mdx";
@@ -23,6 +23,7 @@ import {
     SpeakerNotesOff,
     VisibilityOff
 } from "@mui/icons-material";
+import {useRouter} from "next/navigation";
 
 interface ItemProps {
     name: string
@@ -88,12 +89,13 @@ const array: ItemProps[] = [
 ]
 
 export default function Page() {
+    const {push} = useRouter()
     return (
         <Frame name="九大分区入口">
-            <Grid2 sx={{my: 2}} container spacing={{xs: 2, md: 3}} columns={{xs: 4, sm: 8, md: 12}}>
+            <Grid2 sx={{my: 2}} container>
                 {array.map(({name, icon}) => (
-                    <Grid2 key={name} size={{xs: 4}}>
-                        <Link href={`#${name}`} sx={{alignItems: 'center', display: 'flex'}}>{icon}{name}</Link>
+                    <Grid2 key={name} size={{xs: 12, sm: 6, md: 4}}>
+                        <Button startIcon={icon} onClick={() => push(`#${name}`)}>{name}</Button>
                     </Grid2>
                 ))}
             </Grid2>
