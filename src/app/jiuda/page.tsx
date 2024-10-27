@@ -1,7 +1,7 @@
 'use client'
 
 import Frame from "@/components/Frame";
-import {Button, Card, CardContent, CardHeader, Grid2, Stack} from "@mui/material";
+import {Avatar, Button, Card, CardContent, CardHeader, Grid2, Stack} from "@mui/material";
 import {ReactNode} from "react";
 import SpLD from "@/markdown/SpLD.mdx";
 import ID from "@/markdown/ID.mdx";
@@ -34,7 +34,7 @@ interface ItemProps {
 function Item({name, description, icon}: ItemProps) {
     return (
         <Card id={name}>
-            <CardHeader title={name} avatar={icon}/>
+            <CardHeader title={name} avatar={<Avatar>{icon}</Avatar>}/>
             <CardContent>{description}</CardContent>
         </Card>
     )
@@ -95,7 +95,8 @@ export default function Page() {
             <Grid2 sx={{my: 2}} container>
                 {array.map(({name, icon}) => (
                     <Grid2 key={name} size={{xs: 12, sm: 6, md: 4}}>
-                        <Button startIcon={icon} onClick={() => push(`#${name}`)} sx={{textTransform: 'none'}}>{name}</Button>
+                        <Button startIcon={icon} onClick={() => push(`#${name}`)}
+                                sx={{textTransform: 'none'}}>{name}</Button>
                     </Grid2>
                 ))}
             </Grid2>
