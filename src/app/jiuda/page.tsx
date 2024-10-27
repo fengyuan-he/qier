@@ -12,16 +12,28 @@ import HI from "@/markdown/HI.mdx";
 import VI from "@/markdown/VI.mdx";
 import SLI from "@/markdown/SLI.mdx";
 import MI from "@/markdown/MI.mdx";
+import {
+    DoNotStep,
+    ExtensionOff,
+    HearingDisabled,
+    NoBackpack,
+    PersonOff,
+    PowerOff,
+    RemoveDone,
+    SpeakerNotesOff,
+    VisibilityOff
+} from "@mui/icons-material";
 
 interface ItemProps {
     name: string
     description: ReactNode
+    icon: ReactNode
 }
 
-function Item({name, description}: ItemProps) {
+function Item({name, description, icon}: ItemProps) {
     return (
         <Card id={name}>
-            <CardHeader title={name}/>
+            <CardHeader title={name} avatar={icon}/>
             <CardContent>{description}</CardContent>
         </Card>
     )
@@ -30,39 +42,48 @@ function Item({name, description}: ItemProps) {
 const array: ItemProps[] = [
     {
         name: '特殊学习障碍 (SpLD)',
-        description: <SpLD/>
+        description: <SpLD/>,
+        icon: <NoBackpack/>
     },
     {
         name: '智力障碍 (ID)',
-        description: <ID/>
+        description: <ID/>,
+        icon: <ExtensionOff/>
     },
     {
         name: '孤独症（自闭症）谱系障碍 (ASD)',
-        description: <ASD/>
+        description: <ASD/>,
+        icon: <PersonOff/>
     },
     {
         name: '注意缺陷/多动障碍 (AD/HD)',
-        description: <ADHD/>
+        description: <ADHD/>,
+        icon: <PowerOff/>
     },
     {
         name: '肢体伤残 (PD)',
-        description: <PD/>
+        description: <PD/>,
+        icon: <DoNotStep/>
     },
     {
         name: '听力障碍 (HI)',
-        description: <HI/>
+        description: <HI/>,
+        icon: <HearingDisabled/>
     },
     {
         name: '视觉障碍 (VI)',
-        description: <VI/>
+        description: <VI/>,
+        icon: <VisibilityOff/>
     },
     {
         name: '言语障碍 (SLI)',
-        description: <SLI/>
+        description: <SLI/>,
+        icon: <SpeakerNotesOff/>
     },
     {
         name: '精神病 (MI)',
-        description: <MI/>
+        description: <MI/>,
+        icon: <RemoveDone/>
     }
 ]
 
@@ -70,9 +91,9 @@ export default function Page() {
     return (
         <Frame name="九大分区入口">
             <Grid2 sx={{my: 2}} container spacing={{xs: 2, md: 3}} columns={{xs: 4, sm: 8, md: 12}}>
-                {array.map(({name}) => (
+                {array.map(({name, icon}) => (
                     <Grid2 key={name} size={{xs: 4}}>
-                        <Link href={`#${name}`}>{name}</Link>
+                        <Link href={`#${name}`} sx={{alignItems: 'center', display: 'flex'}}>{icon}{name}</Link>
                     </Grid2>
                 ))}
             </Grid2>
