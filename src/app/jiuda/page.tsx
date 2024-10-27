@@ -95,7 +95,7 @@ export default function Page() {
             <Grid2 sx={{my: 2}} container>
                 {array.map(({name, icon}) => (
                     <Grid2 key={name} size={{xs: 12, sm: 6, md: 4}}>
-                        <Button startIcon={icon} onClick={() => push(`#${name}`)}>{name}</Button>
+                        <Button startIcon={icon} onClick={() => push(`#${name}`)} sx={{textTransform: 'none'}}>{name}</Button>
                     </Grid2>
                 ))}
             </Grid2>
