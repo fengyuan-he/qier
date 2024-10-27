@@ -11,7 +11,8 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle, Fab,
+    DialogTitle,
+    Fab,
     Fade,
     IconButton,
     Slide,
@@ -20,7 +21,7 @@ import {
     Typography,
     useScrollTrigger
 } from "@mui/material";
-import {MouseEvent, ReactNode, useState} from "react";
+import {ReactNode, useState} from "react";
 import {title} from "@/values";
 import {AccountCircle, Close, Error, Home, KeyboardArrowUp} from "@mui/icons-material";
 import {signIn, signOut} from "next-auth/react";
@@ -43,11 +44,11 @@ function ScrollTop({children}: {
     children: ReactNode
 }) {
     const trigger = useScrollTrigger({disableHysteresis: true, threshold: 100})
-    const handleClick = (event: MouseEvent<HTMLDivElement>) => ((event.target as HTMLDivElement).ownerDocument || document).getElementById('back-to-top-anchor')?.scrollIntoView({block: 'center'})
+    const {push} = useRouter()
     return (
         <Fade in={trigger}>
             <Box
-                onClick={handleClick}
+                onClick={() => push('#顶部')}
                 role="presentation"
                 sx={{position: 'fixed', bottom: 16, right: 16}}
             >
@@ -143,7 +144,7 @@ export default function Frame({name, children}: {
                     </Toolbar>
                 </AppBar>
             </Slide>
-            <Toolbar id="back-to-top-anchor"/>
+            <Toolbar id="顶部"/>
             <Container>
                 {children}
             </Container>
