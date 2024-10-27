@@ -145,7 +145,7 @@ export default function Frame({name, children}: {
                 </AppBar>
             </Slide>
             <Toolbar id="顶部"/>
-            <Container>
+            <Container maxWidth="md">
                 {children}
             </Container>
             <ScrollTop>

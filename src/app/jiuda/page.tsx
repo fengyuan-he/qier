@@ -92,7 +92,7 @@ export default function Page() {
     const {push} = useRouter()
     return (
         <Frame name="九大分区入口">
-            <Grid2 sx={{my: 2}} container>
+            <Grid2 my={3} container>
                 {array.map(({name, icon}) => (
                     <Grid2 key={name} size={{xs: 12, sm: 6, md: 4}}>
                         <Button startIcon={icon} onClick={() => push(`#${name}`)}
@@ -100,7 +100,7 @@ export default function Page() {
                     </Grid2>
                 ))}
             </Grid2>
-            <Stack spacing={2} my={3}>
+            <Stack my={3} spacing={2}>
                 {array.map((value) => <Item key={value.name} {...value}/>)}
             </Stack>
         </Frame>
