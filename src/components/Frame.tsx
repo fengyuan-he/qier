@@ -1,6 +1,7 @@
 import {
     AppBar,
     Avatar,
+    Box,
     Button,
     Chip,
     CircularProgress,
@@ -10,16 +11,18 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle,
-    IconButton, Slide,
+    DialogTitle, Fab,
+    Fade,
+    IconButton,
+    Slide,
     ThemeProvider,
     Toolbar,
     Typography,
     useScrollTrigger
 } from "@mui/material";
-import {ReactNode, useState} from "react";
+import {MouseEvent, ReactNode, useState} from "react";
 import {title} from "@/values";
-import {AccountCircle, Close, Error, Home} from "@mui/icons-material";
+import {AccountCircle, Close, Error, Home, KeyboardArrowUp} from "@mui/icons-material";
 import {signIn, signOut} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/components/UserProvider";
@@ -35,6 +38,24 @@ const theme = createTheme({
         dark: true
     }
 })
+
+function ScrollTop({children}: {
+    children: ReactNode
+}) {
+    const trigger = useScrollTrigger({disableHysteresis: true, threshold: 100})
+    const handleClick = (event: MouseEvent<HTMLDivElement>) => ((event.target as HTMLDivElement).ownerDocument || document).getElementById('back-to-top-anchor')?.scrollIntoView({block: 'center'})
+    return (
+        <Fade in={trigger}>
+            <Box
+                onClick={handleClick}
+                role="presentation"
+                sx={{position: 'fixed', bottom: 16, right: 16}}
+            >
+                {children}
+            </Box>
+        </Fade>
+    )
+}
 
 export default function Frame({name, children}: {
     name?: string
@@ -61,6 +82,7 @@ export default function Frame({name, children}: {
                                 color="inherit"
                                 sx={{mr: 2}}
                                 onClick={() => push('/')}
+                                aria-label="回到首页"
                             >
                                 <Home/>
                             </IconButton>}
@@ -73,6 +95,7 @@ export default function Frame({name, children}: {
                                 size="large"
                                 onClick={handleAuth}
                                 color="inherit"
+                                aria-label="用户"
                             >
                                 {error ?
                                     <Error/> :
@@ -95,7 +118,6 @@ export default function Frame({name, children}: {
                                         '登录失败'}
                                 </DialogTitle>
                                 <IconButton
-                                    aria-label="close"
                                     onClick={handleClose}
                                     sx={(theme) => ({
                                         position: 'absolute',
@@ -103,6 +125,7 @@ export default function Frame({name, children}: {
                                         top: 8,
                                         color: theme.palette.grey[500],
                                     })}
+                                    aria-label="关闭"
                                 >
                                     <Close/>
                                 </IconButton>
@@ -120,10 +143,15 @@ export default function Frame({name, children}: {
                     </Toolbar>
                 </AppBar>
             </Slide>
-            <Toolbar/>
+            <Toolbar id="back-to-top-anchor"/>
             <Container>
                 {children}
             </Container>
+            <ScrollTop>
+                <Fab size="small" aria-label="回到顶部">
+                    <KeyboardArrowUp/>
+                </Fab>
+            </ScrollTop>
         </ThemeProvider>
     )
 }
