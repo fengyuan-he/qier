@@ -85,13 +85,28 @@ const array: ItemProps[] = [
         name: '精神病 (MI)',
         description: <MI/>,
         icon: <RemoveDone/>
+    },
+    {
+        name: '情绪障碍 (ED)',
+        description: <></>,
+        icon: <></>
+    },
+    {
+        name: '发育迟缓 (DD)',
+        description: <></>,
+        icon: <></>
+    },
+    {
+        name: '多重障碍 (MD)',
+        description: <></>,
+        icon: <></>
     }
 ]
 
 export default function Page() {
     const {push} = useRouter()
     return (
-        <Frame name="九大分区入口">
+        <Frame name="分区入口">
             <Grid2 my={3} container>
                 {array.map(({name, icon}) => (
                     <Grid2 key={name} size={{xs: 12, sm: 6, md: 4}}>

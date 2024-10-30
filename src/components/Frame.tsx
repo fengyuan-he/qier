@@ -5,7 +5,6 @@ import {
     Button,
     Chip,
     CircularProgress,
-    Container,
     createTheme,
     CssBaseline,
     Dialog,
@@ -15,6 +14,8 @@ import {
     Fab,
     Fade,
     IconButton,
+    MenuItem,
+    Select,
     Slide,
     ThemeProvider,
     Toolbar,
@@ -23,17 +24,17 @@ import {
 } from "@mui/material";
 import {ReactNode, useState} from "react";
 import {title} from "@/values";
-import {AccountCircle, Close, Error, Home, KeyboardArrowUp} from "@mui/icons-material";
+import {Close, Home, KeyboardArrowUp} from "@mui/icons-material";
 import {signIn, signOut} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/components/UserProvider";
 import Report from "@/components/Report";
-import {blue, lightGreen} from "@mui/material/colors";
+import {lightGreen, red} from "@mui/material/colors";
 
 const theme = createTheme({
     palette: {
-        primary: blue,
-        secondary: lightGreen,
+        primary: red,
+        secondary: lightGreen
     },
     colorSchemes: {
         dark: true
@@ -58,6 +59,8 @@ function ScrollTop({children}: {
     )
 }
 
+const languages = ['zh-CN', 'en-US']
+
 export default function Frame({name, children}: {
     name?: string
     children?: ReactNode
@@ -70,6 +73,7 @@ export default function Frame({name, children}: {
     const {data, error, mutate, isLoading} = useUser()
     const handleAuth = () => data || error ? setOpen(true) : signIn('github')
     const {push} = useRouter()
+    const [language, setLanguage] = useState<typeof languages[number]>('zh-CN')
     return (
         <ThemeProvider theme={theme}>
             <title>{name === undefined ? title : `${name}|${title}`}</title>
@@ -87,27 +91,33 @@ export default function Frame({name, children}: {
                             >
                                 <Home/>
                             </IconButton>}
-                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                        <Typography variant="h6" component="div">
                             {name ?? '首页'}
                         </Typography>
+                        <Typography sx={{flexGrow: 1, textAlign: 'center'}}>
+                            关于我们 | 理论研究政策指导 | 意见反馈
+                        </Typography>
+                        <Select sx={{color: 'inherit'}} value={language} onChange={event => setLanguage(event.target.value)} variant="outlined">
+                            {languages.map(value => <MenuItem value={value}>{value}</MenuItem>)}
+                        </Select>
                         {isLoading ?
                             <CircularProgress color="inherit"/> :
-                            <IconButton
+                            <Button
                                 size="large"
                                 onClick={handleAuth}
                                 color="inherit"
-                                aria-label="用户"
                             >
                                 {error ?
-                                    <Error/> :
+                                    '错误' :
                                     data ?
                                         <Avatar
+                                            aria-label="用户"
                                             alt={data.name}
                                             src={data.image}
                                             sx={{width: 24, height: 24}}
                                         /> :
-                                        <AccountCircle/>}
-                            </IconButton>}
+                                        '登录'}
+                            </Button>}
                         {(data || error) &&
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle sx={{m: 0, p: 2}}>
@@ -145,9 +155,7 @@ export default function Frame({name, children}: {
                 </AppBar>
             </Slide>
             <Toolbar id="顶部"/>
-            <Container maxWidth="md">
-                {children}
-            </Container>
+            {children}
             <ScrollTop>
                 <Fab size="small" aria-label="回到顶部">
                     <KeyboardArrowUp/>

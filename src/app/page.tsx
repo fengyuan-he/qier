@@ -1,71 +1,110 @@
 'use client'
 import Frame from "@/components/Frame";
-import {List, ListItemButton, ListItemText} from "@mui/material";
-import {useRouter} from "next/navigation";
+import {
+    ImageList,
+    ImageListItem,
+    ImageListItemBar,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow
+} from "@mui/material";
+import Link from "next/link";
 
 interface ItemProps {
     name: string
     url: string
-    disabled?: boolean
 }
 
-function Item({name, url, disabled}: ItemProps) {
-    const {push} = useRouter()
+function Item({name, url}: ItemProps) {
     return (
-        <ListItemButton onClick={() => push(`/${url}`)} disabled={disabled}>
-            <ListItemText>{name}</ListItemText>
-        </ListItemButton>
+        <TableCell sx={{fontSize: 20}} align="center">
+            <Link href={url}>{name}</Link>
+        </TableCell>
     )
 }
 
-const array: ItemProps[] = [
+const rows: ItemProps[][] = [
+    [
+        {
+            name: '评估',
+            url: 'pinggu'
+        },
+        {
+            name: '分区入口',
+            url: 'fenqu'
+        },
+        {
+            name: '家庭支持',
+            url: 'jiating'
+        }
+    ],
+    [
+        {
+            name: '专技预约系统',
+            url: 'zhuanji'
+        },
+        {
+            name: '问答区',
+            url: 'wenda'
+        },
+        {
+            name: '辅助程序入口',
+            url: 'fuzhu'
+        }
+    ],
+    [
+        {
+            name: '教师专业发展',
+            url: 'jiaoyu'
+        },
+        {
+            name: '各地支持机构一览',
+            url: 'gedi'
+        },
+        {
+            name: '特色课程',
+            url: 'kecheng'
+        }
+    ]
+]
+
+const imageData: {
+    title: string
+    subtitle: string
+    src: string
+}[] = [
     {
-        name: '理论研究和政策指导',
-        url: 'zhengce',
-        disabled: true
-    },
-    {
-        name: '九大分区入口',
-        url: 'jiuda'
-    },
-    {
-        name: '专技预约与反馈',
-        url: 'zhuanji',
-        disabled: true
-    },
-    {
-        name: '特色课程指导',
-        url: 'zhidao',
-        disabled: true
-    },
-    {
-        name: '经验分享区',
-        url: 'jingyan',
-        disabled: true
-    },
-    {
-        name: '家长课堂',
-        url: 'jiazhang',
-        disabled: true
-    },
-    {
-        name: '问答区',
-        url: 'wenda',
-        disabled: true
-    },
-    {
-        name: '家庭互助讨论组',
-        url: 'huzhu',
-        disabled: true
+        title: 'a',
+        subtitle: 'A',
+        src: '/a.jpg'
     }
 ]
 
 export default function Page() {
     return (
         <Frame>
-            <List>
-                {array.map((value, index) => <Item {...value} key={index}/>)}
-            </List>
+            <img alt="头图" src="/头图.png" width="100%"/>
+            <ImageList>
+                {imageData.map(({title, subtitle, src}) => (
+                    <ImageListItem key={src}>
+                        <img src={src} alt={title}/>
+                        <ImageListItemBar title={title} subtitle={subtitle}/>
+                    </ImageListItem>
+                ))}
+            </ImageList>
+            <TableContainer>
+                <Table>
+                    <TableBody>
+                        {rows.map((value, index) => (
+                            <TableRow key={index}>
+                                {value.map(value => <Item key={value.url} {...value}/>)}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Frame>
     )
 }
