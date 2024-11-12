@@ -98,7 +98,7 @@ export default function Frame({name, children}: {
                             关于我们 | 理论研究政策指导 | 意见反馈
                         </Typography>
                         <Select sx={{color: 'inherit'}} value={language} onChange={event => setLanguage(event.target.value)} variant="outlined">
-                            {languages.map(value => <MenuItem value={value}>{value}</MenuItem>)}
+                            {languages.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
                         </Select>
                         {isLoading ?
                             <CircularProgress color="inherit"/> :
