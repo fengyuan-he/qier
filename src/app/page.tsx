@@ -11,6 +11,7 @@ import {
     TableRow
 } from "@mui/material";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ItemProps {
     name: string
@@ -85,11 +86,25 @@ const imageData: {
 export default function Page() {
     return (
         <Frame>
-            <img alt="头图" src="/头图.png" width="100%"/>
+            <Image
+                alt="头图"
+                src="/头图.png"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{width: '100%', height: 'auto'}}
+            />
             <ImageList>
                 {imageData.map(({title, subtitle, src}) => (
                     <ImageListItem key={src}>
-                        <img src={src} alt={title}/>
+                        <Image
+                            src={src}
+                            alt={title}
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{width: '100%', height: 'auto'}}
+                        />
                         <ImageListItemBar title={title} subtitle={subtitle}/>
                     </ImageListItem>
                 ))}
