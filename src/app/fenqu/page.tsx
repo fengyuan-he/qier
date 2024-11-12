@@ -13,9 +13,12 @@ import VI from "@/markdown/VI.mdx";
 import SLI from "@/markdown/SLI.mdx";
 import MI from "@/markdown/MI.mdx";
 import {
+    BedtimeOff,
     DoNotStep,
     ExtensionOff,
+    GridOff,
     HearingDisabled,
+    InvertColorsOff,
     NoBackpack,
     PersonOff,
     PowerOff,
@@ -89,17 +92,17 @@ const array: ItemProps[] = [
     {
         name: '情绪障碍 (ED)',
         description: <></>,
-        icon: <></>
+        icon: <BedtimeOff/>
     },
     {
         name: '发育迟缓 (DD)',
         description: <></>,
-        icon: <></>
+        icon: <InvertColorsOff/>
     },
     {
         name: '多重障碍 (MD)',
         description: <></>,
-        icon: <></>
+        icon: <GridOff/>
     }
 ]
 
