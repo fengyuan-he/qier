@@ -17,6 +17,7 @@ import {
     MenuItem,
     Select,
     Slide,
+    Stack,
     ThemeProvider,
     Toolbar,
     Typography,
@@ -30,6 +31,7 @@ import {useRouter} from "next/navigation";
 import {useUser} from "@/components/UserProvider";
 import Report from "@/components/Report";
 import {lightGreen, red} from "@mui/material/colors";
+import Link from "next/link";
 
 const theme = createTheme({
     palette: {
@@ -60,6 +62,23 @@ function ScrollTop({children}: {
 }
 
 const languages = ['zh-CN', 'en-US']
+const top: {
+    name: string
+    url: string
+}[] = [
+    {
+        name: '关于我们',
+        url: '/guanyu'
+    },
+    {
+        name: '理论研究政策指导',
+        url: '/lilun'
+    },
+    {
+        name: '意见反馈',
+        url: '/yijian'
+    }
+]
 
 export default function Frame({name, children}: {
     name?: string
@@ -91,13 +110,23 @@ export default function Frame({name, children}: {
                             >
                                 <Home/>
                             </IconButton>}
-                        <Typography variant="h6" component="div">
+                        <Typography variant="h6" component="div" flexGrow={1}>
                             {name ?? '首页'}
                         </Typography>
-                        <Typography sx={{flexGrow: 1, textAlign: 'center'}}>
-                            关于我们 | 理论研究政策指导 | 意见反馈
-                        </Typography>
-                        <Select sx={{color: 'inherit'}} value={language} onChange={event => setLanguage(event.target.value)} variant="outlined">
+                        <Stack
+                            direction="row"
+                            spacing={1}
+                            position="absolute"
+                            left="50%"
+                            sx={{transform: 'translateX(-50%)'}}
+                        >
+                            {top.map(({name, url}) =>
+                                <Link key={name} href={url} style={{color: 'white'}}>{name}</Link>)}
+                        </Stack>
+                        <Select
+                            sx={{color: 'inherit'}}
+                            value={language}
+                            onChange={event => setLanguage(event.target.value)} variant="outlined">
                             {languages.map(value => <MenuItem key={value} value={value}>{value}</MenuItem>)}
                         </Select>
                         {isLoading ?

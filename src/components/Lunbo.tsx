@@ -8,7 +8,7 @@ interface LunboProps {
 
 export default function Lunbo({items}: LunboProps) {
     return (
-        <Carousel showArrows>
+        <Carousel showArrows showThumbs={false}>
             {items.map(value =>
                 <Image
                     key={value}

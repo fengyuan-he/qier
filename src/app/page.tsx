@@ -34,43 +34,43 @@ const rows: ItemProps[][] = [
     [
         {
             name: '评估',
-            url: 'pinggu'
+            url: '/pinggu'
         },
         {
             name: '分区入口',
-            url: 'fenqu'
+            url: '/fenqu'
         },
         {
             name: '家庭支持',
-            url: 'jiating'
+            url: '/jiating'
         }
     ],
     [
         {
             name: '专技预约系统',
-            url: 'zhuanji'
+            url: '/zhuanji'
         },
         {
             name: '问答区',
-            url: 'wenda'
+            url: '/wenda'
         },
         {
             name: '辅助程序入口',
-            url: 'fuzhu'
+            url: '/fuzhu'
         }
     ],
     [
         {
             name: '教师专业发展',
-            url: 'jiaoyu'
+            url: '/jiaoyu'
         },
         {
             name: '各地支持机构一览',
-            url: 'gedi'
+            url: '/gedi'
         },
         {
             name: '特色课程',
-            url: 'kecheng'
+            url: '/kecheng'
         }
     ]
 ]
