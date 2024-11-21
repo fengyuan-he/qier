@@ -18,6 +18,7 @@ export default function Lunbo({items}: LunboProps) {
                     height={0}
                     sizes="100vw"
                     style={{width: '100%', height: 'auto'}}
+                    priority
                 />
             )}
         </Carousel>
