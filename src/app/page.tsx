@@ -30,49 +30,58 @@ function Item({name, url}: ItemProps) {
     )
 }
 
-const rows: ItemProps[][] = [
-    [
-        {
-            name: '评估',
-            url: '/pinggu'
-        },
-        {
-            name: '分区入口',
-            url: '/fenqu'
-        },
-        {
-            name: '家庭支持',
-            url: '/jiating'
-        }
-    ],
-    [
-        {
-            name: '专技预约系统',
-            url: '/zhuanji'
-        },
-        {
-            name: '问答区',
-            url: '/wenda'
-        },
-        {
-            name: '辅助程序入口',
-            url: '/fuzhu'
-        }
-    ],
-    [
-        {
-            name: '教师专业发展',
-            url: '/jiaoyu'
-        },
-        {
-            name: '各地支持机构一览',
-            url: '/gedi'
-        },
-        {
-            name: '特色课程',
-            url: '/kecheng'
-        }
-    ]
+const rows: {title: string, children: ItemProps[]}[] = [
+    {
+        title: '家长',
+        children:     [
+            {
+                name: '评估',
+                url: '/pinggu'
+            },
+            {
+                name: '分区入口',
+                url: '/fenqu'
+            },
+            {
+                name: '家庭支持',
+                url: '/jiating'
+            }
+        ]
+    },
+    {
+        title: '公众',
+        children: [
+            {
+                name: '专技预约系统',
+                url: '/zhuanji'
+            },
+            {
+                name: '问答区',
+                url: '/wenda'
+            },
+            {
+                name: '辅助程序入口',
+                url: '/fuzhu'
+            }
+        ]
+    },
+    {
+        title: '教师',
+        children:     [
+            {
+                name: '教师专业发展',
+                url: '/jiaoyu'
+            },
+            {
+                name: '各地支持机构一览',
+                url: '/gedi'
+            },
+            {
+                name: '特色课程',
+                url: '/kecheng'
+            }
+        ]
+    }
 ]
 
 const imageData: {
@@ -152,9 +161,10 @@ export default function Page() {
             <TableContainer>
                 <Table>
                     <TableBody>
-                        {rows.map((value, index) => (
-                            <TableRow key={index}>
-                                {value.map(value => <Item key={value.url} {...value}/>)}
+                        {rows.map(({title, children}) => (
+                            <TableRow key={title}>
+                                <TableCell sx={{fontSize: 24}}>{title}</TableCell>
+                                {children.map(value => <Item key={value.url} {...value}/>)}
                             </TableRow>
                         ))}
                     </TableBody>
