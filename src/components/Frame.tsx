@@ -207,7 +207,7 @@ export default function Frame({name, children}: {
             <AppBar position="static">
                 <Toolbar>
                     <List>
-                        {bottom.map(({name, url}) => <ListItemButton onClick={() => push(url)}>{name}</ListItemButton>)}
+                        {bottom.map(({name, url}) => <ListItemButton onClick={() => push(url)} key={name}>{name}</ListItemButton>)}
                     </List>
                 </Toolbar>
             </AppBar>
