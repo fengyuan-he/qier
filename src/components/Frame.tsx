@@ -14,6 +14,8 @@ import {
     Fab,
     Fade,
     IconButton,
+    List,
+    ListItemButton,
     MenuItem,
     Select,
     Slide,
@@ -77,6 +79,23 @@ const top: {
     {
         name: '意见反馈',
         url: '/yijian'
+    }
+]
+const bottom: {
+    name: string
+    url: string
+}[] = [
+    {
+        name: '关于特殊教育',
+        url: '/jiaoyu'
+    },
+    {
+        name: '联系我们',
+        url: '/women'
+    },
+    {
+        name: '科普',
+        url: '/kepu'
     }
 ]
 
@@ -185,6 +204,13 @@ export default function Frame({name, children}: {
             </Slide>
             <Toolbar id="顶部"/>
             {children}
+            <AppBar position="static">
+                <Toolbar>
+                    <List>
+                        {bottom.map(({name, url}) => <ListItemButton onClick={() => push(url)}>{name}</ListItemButton>)}
+                    </List>
+                </Toolbar>
+            </AppBar>
             <ScrollTop>
                 <Fab size="small" aria-label="回到顶部">
                     <KeyboardArrowUp/>
